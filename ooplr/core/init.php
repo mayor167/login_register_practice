@@ -1,7 +1,7 @@
 <?php
 $GLOBALS['config'] = array(
   'mysql' => array(
-    'host' => '127.0.0.1',
+    'host' => 'localhost',
     'username' => 'root',
     'password' => '',
      'dbname' => 'login_register_test'
@@ -15,7 +15,9 @@ $GLOBALS['config'] = array(
   )
 );
 spl_autoload_register(function($class){
-require_once 'classes/'. $class. 'php';
+require_once __DIR__. "/../classes/". $class.".php";
+// $file = __DIR__."/../classes/". $class.".php";
+// echo $file;
 });
-require_once 'functions/sanitize.php';
+require_once 'ooplr/functions/sanitize.php';
 ?>
