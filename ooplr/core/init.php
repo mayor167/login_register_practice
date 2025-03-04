@@ -1,4 +1,5 @@
 <?php
+session_start();
 $GLOBALS['config'] = array(
   'mysql' => array(
     'host' => 'localhost',
@@ -11,7 +12,8 @@ $GLOBALS['config'] = array(
     'cookie_expiry' => 604800
   ),
   'session' => array(
-    'session_name' => 'user'
+    'session_name' => 'user',
+    'token_name' => 'token'
   )
 );
 spl_autoload_register(function($class){
