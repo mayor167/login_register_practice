@@ -34,7 +34,31 @@ $validation = $validate->check($_POST, array(
 ));
 
 if ($validation -> passed()){
-   echo "Passed";
+    // Session::flash('success', 'You registered successfully');
+    // header('Location:index.php');
+//    echo "Passed";
+
+//registering users
+    $user = new User(); 
+
+     $salt= Hash::salt(32);
+    try {
+        $user->create(array(
+                'username' => Input::get('username'),
+                'password' => Hash::make(Input::get('password'),$salt),
+                'salt' => $salt,
+                'name' => Input::get('name'),
+                'joined' => date('Y-m-d H:i:s'),
+                'group' => 1
+        ));
+        Session::flash('home', 'You have been registered and can now log in');
+        Redirect::to('index.php');
+        // Redirect::to(404);
+       
+        // header('Location:index.php');
+    } catch (Exception $e) {
+        die($e->getMessage());
+    }
 }
 
 else{

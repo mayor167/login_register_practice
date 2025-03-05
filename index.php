@@ -1,5 +1,10 @@
 <?php
 require_once "ooplr/core/init.php";
+if(Session::exists('home')){
+    $message = Session::flash('home');
+   echo '<p>'.$message.'</p>';
+}
+
 // echo "<h1>I'm dev </h1>";
 // echo Config::get('mysql/host');
 // $user = DB::getInstance()->query("SELECT username FROM users WHERE username=?", array('alex')); //connect to db here
@@ -22,9 +27,9 @@ require_once "ooplr/core/init.php";
 //     'username' => 'Dale',
 //      'password' => 'password',
 //       'salt' => 'salt' )); 
-$userInsert = DB::getInstance()->update('users', 3, array(
-                'password' => 'userpassword',
-                'name'     =>  'Dale Mayorsky'
+// $userInsert = DB::getInstance()->update('users', 3, array(
+//                 'password' => 'userpassword',
+//                 'name'     =>  'Dale Mayorsky'
                 
-));
+// ));
  ?>
