@@ -5,7 +5,7 @@
         }
 
         public static function salt($length){
-            return random_bytes($length);
+            return md5($length);
         }
 
         public static function unique(){

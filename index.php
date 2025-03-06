@@ -4,6 +4,7 @@ if(Session::exists('home')){
     $message = Session::flash('home');
    echo '<p>'.$message.'</p>';
 }
+echo Session::get(Config::get('session/session_name'));
 
 // echo "<h1>I'm dev </h1>";
 // echo Config::get('mysql/host');

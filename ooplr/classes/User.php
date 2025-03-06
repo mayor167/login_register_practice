@@ -1,10 +1,12 @@
 <?php
     class User{
         private $db,
-                $data;
+                $data,
+                $sessionName;
         public function __construct($user =null)
         {
             $this -> db = DB::getInstance();
+            $this -> sessionName = Config::get('session/session_name');
 
         }
 
@@ -29,7 +31,9 @@
           $user = $this->find($username);
             if($user){
                 if($this -> data() -> password === Hash::make($password, $this -> data() -> salt)){
-                    echo "OK!";
+                    // echo "OK!";
+                    Session::put($this -> sessionName, $this->data()->id);
+                    return true;
                 }
             }
         //   print_r($this -> data);
