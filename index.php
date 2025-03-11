@@ -4,7 +4,29 @@ if(Session::exists('home')){
     $message = Session::flash('home');
    echo '<p>'.$message.'</p>';
 }
-echo Session::get(Config::get('session/session_name'));
+// echo Session::get(Config::get('session/session_name'));
+$user = new User(); //current user
+if ($user->isLoggedIn()){
+//  echo "Logged in";
+?>
+<p>Hello <a href = "profile.php?user=<?php echo escape($user->data()->username);?>"><?php echo escape($user->data()->username);?></a>!</p>
+<ul>
+    <li><a href="logout.php">Log out</a></li>
+    <li><a href="update.php">Update details</a></li>
+    <li><a href="changepassword.php">Change your password</a></li>
+</ul>
+<?php
+//adding permission
+if($user->hasPermission('admin')){
+ echo '<p>You are an administrator</p>';
+}
+
+
+}else{
+    echo '<p>You need to <a href = "login.php">log in</a> or <a href ="register.php">register</a></p>';
+}
+// echo $user -> data()->username
+// $anotheruser = new User(6) //another user
 
 // echo "<h1>I'm dev </h1>";
 // echo Config::get('mysql/host');

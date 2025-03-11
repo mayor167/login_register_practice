@@ -12,7 +12,7 @@
                     $this -> pdo = new PDO( 'mysql:host='.Config::get('mysql/host').';dbname='.Config::get('mysql/dbname'),
                     Config::get('mysql/username'),
                     Config::get('mysql/password'));
-                    echo "connected!". "<br>";
+                    // echo "connected!". "<br>";
                 } catch (PDOException $e) {
                     die("Database Connection falied".$e->getMessage());
                 }
@@ -71,7 +71,7 @@
 
         }
         public function delete($table, $where){
-            return $this->action('DELETE *', $table, $where); 
+            return $this->action('DELETE ', $table, $where); 
 
         }
         public function insert($table ,$fields = array()){
@@ -88,7 +88,7 @@
                     $x++;
                 }
                     // die($values);
-                    $sql = "INSERT INTO users(`". implode('`,`', $keys)."`) VALUES ({$values })";
+                    $sql = "INSERT INTO {$table}(`". implode('`,`', $keys)."`) VALUES ({$values })";
                     // echo $sql;
                     if(!$this->query($sql,$fields)->error()){
                             return true;
